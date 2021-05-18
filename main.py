@@ -1,18 +1,24 @@
-from random import randint, sample
+# 创建一个空集合
+set1 = set()
+# 通过add方法添加元素
+set1.add(33)
+set1.add(55)
+set1.update({1, 10, 100, 1000})
+print(set1)    # {33, 1, 100, 55, 1000, 10}
 
-def display(balls):
-    for index, ball in enumerate(balls):
-        if index == len(balls) - 1:
-            print('|', end=' ')
-        print(f'{ball:0>2d}', end=' ')
+# 通过discard方法删除指定元素
+set1.discard(100)
+set1.discard(99)
+print(set1)    # {1, 10, 33, 55, 1000}
+# 通过remove方法删除指定元素，建议先做成员运算再删除
+# 否则元素如果不在集合中就会引发KeyError异常
+if 10 in set1:
+    set1.remove(10)
+print(set1)    # {33, 1, 55, 1000}
 
-def random_sellect():
-    red_balls = [x for x in range(1, 34)]
-    selected_balls = sample(red_balls, 6)
-    selected_balls.sort()
-    selected_balls.append(randint(1, 16))
-    return selected_balls
+# pop方法可以从集合中随机删除一个元素并返回该元素
+print(set1.pop())
 
-i = int(input('出几组:'))
-for _ in range(i):
-    display(random_sellect())
+# clear方法可以清空整个集合
+set1.clear()
+print(set1)    # set()
